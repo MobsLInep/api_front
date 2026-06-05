@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const RAW_API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+// Clean any trailing slashes to avoid double-slashes in URLs (e.g. //appointments)
+const API_URL = RAW_API_URL.replace(/\/+$/, '');
 
 function App() {
   // --- States ---
