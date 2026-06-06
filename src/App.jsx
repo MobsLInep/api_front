@@ -72,13 +72,17 @@ function App() {
     setFormAlert(null);
 
     try {
+      const localDate = new Date(appointmentTime);
+      const clientTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
       const res = await fetch(`${API_URL}/appointments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           customerName,
           phoneNumber,
-          appointmentTime
+          appointmentTime: localDate.toISOString(),
+          timezone: clientTimezone
         })
       });
 
